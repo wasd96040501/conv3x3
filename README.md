@@ -1,5 +1,5 @@
 # conv3x3
-Vary fast 3x3 convolution on cpu, only with padding = 0, stride = 1, dialation = 1.<br>
+Vary fast 3x3 convolution on cpu, only with padding = 0, stride = 1, dilation = 1.<br>
 This repo is aimed to share my idea with you.
 
 ---
@@ -44,7 +44,7 @@ matrix multilication is the rate of operation / (load,store),
 which means some special (m, n, k) will lead to vary poor performance, because (m * n * k) / (m * k + n * k) is vary small,
 unfortunately im2col will exactly leads to this condition (vary large n compared to m).
 <br><br>
-So, I decide to skip im2col, and it is exactly possible to implment when stride and dialation is 1.<br>
+So, I decide to skip im2col, and it is exactly possible to implment when stride and dilation is 1.<br>
 And also luckily, this can be done with little modification to gemm kernel.
 <br><br>
 (For readers not familiar with gemm, have a look at https://github.com/flame/blislab)<br>
@@ -73,5 +73,5 @@ In future, I will remove the dependency on Eigen.
 - More generic code generation for kernel like 5x5, 7x7... conv.
 - Remove the constrain of padding = 0, which can be done with little modification to pack_rhs.
 - Improve border case performance
-- Some special stride and dialation
+- Some special stride and dilation
 - Turn into a mature convolution package. 
