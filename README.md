@@ -65,9 +65,13 @@ So, I think on platform like arm, we can also obtain performance imporvement. <b
 However, this code uses Eigen::internal, which means it is unstable when Eigen upgrades.
 In future, I will remove the dependency on Eigen.
 
+--- 
+# Problem
+- In some special case, like when out_width is not multiple of 4, or out_channel not multiple of 8, performence decrease hugely
 ---
 # Future
 - More generic code generation for kernel like 5x5, 7x7... conv.
 - Remove the constrain of padding = 0, which can be done with little modification to pack_rhs.
-- some special stride and dialation
+- Improve border case performance
+- Some special stride and dialation
 - Turn into a mature convolution package. 
