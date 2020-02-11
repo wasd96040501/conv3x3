@@ -1461,13 +1461,13 @@ void conv3x3(Index m, Index channels, Index oh, Index ow,
 
     const bool pack_rhs_once = mc!=rows && kc==depth && ohc==oh && owc == ow;
 
+      for(Index k2=0; k2<depth; k2+=kc)
+      {
+        const Index actual_kc = (std::min)(k2+kc,depth)-k2;
     for(Index i2=0; i2<rows; i2+=mc)
     {
       const Index actual_mc = (std::min)(i2+mc,rows)-i2;
 
-      for(Index k2=0; k2<depth; k2+=kc)
-      {
-        const Index actual_kc = (std::min)(k2+kc,depth)-k2;
 
         pack_lhs(blockA, lhs.getSubMapper(i2,k2), actual_kc, actual_mc);
 
